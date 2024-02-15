@@ -43,4 +43,54 @@ int IsEmpty(List *li) {
     return (*li == NULL) ? 1 : 0;
 }
 
+int addLastElement(List *li, int elem){
+    if(li == NULL) return -1;
+    NODE *new = nodeAlloc();
+    if(new == NULL) return 0;
+    new->elem = elem;
+    if(IsEmpty(li)) {
+        *li = new;
+    } else {
+        NODE *aux = *li;
+        while(aux->next != NULL) {
+            aux = aux->next;
+        }
+        aux->next = new;
+    }
+    new->next = NULL;
+    return 1;
+}
+
+int removeLastElement(List *li) {
+    if(li == NULL) return -1;
+    if(IsEmpty(li)) return 0;
+    NODE *aux = *li, *prev;
+    while(aux->next != NULL){
+        prev = aux;
+        aux = aux->next;
+    }
+    if(aux == *li) {
+        *li = NULL;
+    } else {
+        prev->next = NULL;
+    }
+    destroyNODE(aux);
+    return 1;
+}
+
+void printList(List *li){
+    if(li == NULL) return;
+    if(IsEmpty(li)) {
+        printf("The list is empty, add new elements to it.\n");
+        return;
+    }
+    NODE *aux = *li;
+    printf("Elements:");
+    while(aux != NULL) {
+        printf(" %d", aux->elem);
+        aux = aux->next;
+    }
+    printf("\n");
+}
+
 #endif
