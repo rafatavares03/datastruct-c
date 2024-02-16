@@ -5,7 +5,7 @@ int main() {
     List *li = createList();
     int selector, x;
     printf(
-        ">>>>>Static Lita<<<<<\n"
+        ">>>>>Static List<<<<<\n"
         "1 - Insert element.\n"
         "2 - Remove element.\n"
         "3 - Remove last element.\n"

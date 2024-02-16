@@ -43,7 +43,7 @@ int IsEmpty(List *li) {
     return (*li == NULL) ? 1 : 0;
 }
 
-int addLastElement(List *li, int elem){
+int InsertLastElement(List *li, int elem){
     if(li == NULL) return -1;
     NODE *new = nodeAlloc();
     if(new == NULL) return 0;
@@ -61,6 +61,16 @@ int addLastElement(List *li, int elem){
     return 1;
 }
 
+int InsertFirstElement(List *li, int elem) {
+    if(li == NULL) return -1;
+    NODE *new = nodeAlloc();
+    if(new == NULL) return 0;
+    new->elem = elem;
+    new->next = *li;
+    *li = new;
+    return 1;
+}
+
 int removeLastElement(List *li) {
     if(li == NULL) return -1;
     if(IsEmpty(li)) return 0;
@@ -74,6 +84,15 @@ int removeLastElement(List *li) {
     } else {
         prev->next = NULL;
     }
+    destroyNODE(aux);
+    return 1;
+}
+
+int removeFirstElement(List *li) {
+    if(li == NULL) return -1;
+    if(IsEmpty(li)) return 0;
+    NODE *aux = *li;
+    *li = aux->next;
     destroyNODE(aux);
     return 1;
 }
